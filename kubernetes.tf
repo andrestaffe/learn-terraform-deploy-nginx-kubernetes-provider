@@ -12,11 +12,12 @@ terraform {
 }
 
 data "terraform_remote_state" "aks" {
-  backend = "local"
-
-  config = {
-    path = "../learn-terraform-provision-aks-cluster/terraform.tfstate"
-  }
+backend "remote" {
+		organization = "eval-as" # org name from step 2.
+		workspaces {
+			name = "nginx" # name for your app's state.
+		}
+	}
 }
 
 # Retrieve AKS cluster information
