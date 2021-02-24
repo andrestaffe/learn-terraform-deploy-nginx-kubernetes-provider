@@ -12,10 +12,11 @@ terraform {
 }
 
 data "terraform_remote_state" "aks" {
-  backend "remote" {
-    organization = "eval-as" # org name from step 2.
-    workspaces {
-      name = "terraform-demo" # name for your app's state.
+  backend = "remote"
+  config = {
+    organization = "eval-as"
+    workspaces = {
+      name = "terraform-demo"
     }
   }
 }
